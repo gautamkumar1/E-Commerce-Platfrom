@@ -19,20 +19,27 @@ import { useRouter } from "next/navigation";
 interface UserData {
   username: string;
   email: string;
+  buyer:string
+  seller:string
   // Add other fields that userData is expected to have
 }
 export default function Header() {
   const userData: UserData | null = localStorage.getItem('userData')
     ? JSON.parse(localStorage.getItem('userData') as string)
     : null;
+  // const SellerData = localStorage.getItem('seller')
+  const BuyerData = localStorage.getItem('buyer')
   const isToken = localStorage.getItem('token');
+  
   const handleLogout = () => {
     localStorage.removeItem('token');
     toast.success("Logged out successfully")
-    window.location.reload(); // Reload to ensure all components reflect the logout state
+    window.location.href = "/";
   };
 
   const router = useRouter()
+  const isBuyer = BuyerData === 'buyer'
+  
   return (
     <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6">
 
@@ -154,7 +161,8 @@ export default function Header() {
             className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
           />
         </div>
-        {isToken ? <DropdownMenu>
+        {/* commented code */}
+        {/* {isToken  ?<DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-8 w-8 rounded-full">
               <Avatar className="h-8 w-8">
@@ -189,7 +197,52 @@ export default function Header() {
           <Link href="/signup">
             <Button>Sign Up</Button>
           </Link>
-        </>}
+        </>} */}
+        {isToken ? (
+  isBuyer ? (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+          <Avatar className="h-8 w-8">
+            <AvatarImage src={avatarImage.src} alt="User avatar" />
+            <AvatarFallback>GK</AvatarFallback>
+          </Avatar>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56" align="end" forceMount>
+        <DropdownMenuLabel className="font-normal">
+          <div className="flex flex-col space-y-1">
+            <p className="text-sm font-medium leading-none">{userData?.username}</p>
+            <p className="text-xs leading-none text-muted-foreground">
+              {userData?.email}
+            </p>
+          </div>
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={() => router.push('/updateinfo')}>
+          Settings
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={handleLogout}>
+          Logout
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  ) : (
+    <>
+      
+    </>
+  )
+) : (
+  <>
+    <Link href="/login">
+      <Button variant="outline">Sign In</Button>
+    </Link>
+    <Link href="/signup">
+      <Button>Sign Up</Button>
+    </Link>
+  </>
+)}
+
       </div>
     </header>
   );

@@ -1,14 +1,34 @@
-
+'use client'
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip"
 import Link from "next/link"
+
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent,CardFooter } from "@/components/ui/card"
 // import iconImage from "../../public/icons8-shopaholic-3d-fluency-32.png"
 import avatarImage from "../../../public/panda.png"
-
+import { toast } from "react-toastify"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useRouter } from "next/navigation";
+interface UserData {
+  username: string;
+  email: string;
+  buyer:string
+  seller:string
+  // Add other fields that userData is expected to have
+}
 export default function Component() {
+  const userData: UserData | null = localStorage.getItem('userData')
+    ? JSON.parse(localStorage.getItem('userData') as string)
+    : null;
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    toast.success("Logged out successfully")
+    window.location.href = "/";
+  };
+
+  const router = useRouter()
   return (
     <div className="flex min-h-screen w-full bg-muted/40">
       <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
@@ -25,7 +45,7 @@ export default function Component() {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  href="#"
+                  href="/"
                   className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                   prefetch={false}
                 >
@@ -38,15 +58,15 @@ export default function Component() {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  href="#"
+                  href="/sellerdashboard/addproduct"
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                   prefetch={false}
                 >
                   <PackageIcon className="h-5 w-5" />
-                  <span className="sr-only">Products</span>
+                  <span className="sr-only">Create Products</span>
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="right">Products</TooltipContent>
+              <TooltipContent side="right">Create Products</TooltipContent>
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -118,12 +138,12 @@ export default function Component() {
                   Home
                 </Link>
                 <Link
-                  href="#"
+                  href="/sellerdashboard/addproduct"
                   className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                   prefetch={false}
                 >
                   <PackageIcon className="h-5 w-5" />
-                  Products
+                  Create Products
                 </Link>
                 <Link
                   href="#"
@@ -160,27 +180,32 @@ export default function Component() {
           <div className="ml-auto flex items-center gap-2">
            
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon" className="overflow-hidden rounded-full">
-                <img
-                  src={avatarImage.src}
-                  width={36}
-                  height={36}
-                  alt="Avatar"
-                  className="overflow-hidden rounded-full"
-                  style={{ aspectRatio: "36/36", objectFit: "cover" }}
-                />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+          <Avatar className="h-8 w-8">
+            <AvatarImage src={avatarImage.src} alt="User avatar" />
+            <AvatarFallback>GK</AvatarFallback>
+          </Avatar>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56" align="end" forceMount>
+        <DropdownMenuLabel className="font-normal">
+          <div className="flex flex-col space-y-1">
+            <p className="text-sm font-medium leading-none">{userData?.username}</p>
+            <p className="text-xs leading-none text-muted-foreground">
+              {userData?.email}
+            </p>
+          </div>
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={() => router.push('/updateinfo')}>
+          Settings
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={handleLogout}>
+          Logout
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
 
           </div>
           

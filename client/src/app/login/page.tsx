@@ -34,18 +34,25 @@ const RegistrationSection: React.FC = () => {
         },
       });
       if (!response.ok) {
-        toast.error("user logged in failed");
         throw new Error("Something went wrong");
       } else {
         toast.success("user logged in successfully");
         const responseData = await response.json();
+        // console.log(responseData);
+        
         const token = responseData.token;
         localStorage.setItem("token", token);
         const decodedToken = jwtDecode(token);
       localStorage.setItem('userData', JSON.stringify(decodedToken));4
       // router.push('/')
-        window.location.href = "/";
-
+        if(formData.userType === 'seller'){
+          localStorage.setItem('seller','seller')
+          window.location.href = "sellerdashboard";
+        }
+        else if(formData.userType === 'buyer'){
+          localStorage.setItem('buyer','buyer')
+          window.location.href = "/";
+        }
       }
     } catch (err) {
       toast.error("user logged in failed");
