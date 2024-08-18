@@ -271,20 +271,20 @@ export default function Component() {
           <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               <Card>
                 <CardHeader className="pb-2">
-                  <CardTitle>Orders</CardTitle>
-                  <CardDescription>View and manage your orders.</CardDescription>
+                  <CardTitle>Create Product</CardTitle>
+                  <CardDescription>Easily add new products with essential details for efficient management.</CardDescription>
                 </CardHeader>
                 <CardFooter>
-                  <Button>Manage Orders</Button>
+                  <Button onClick={()=> router.push('/sellerdashboard/addproduct')}>Create Product</Button>
                 </CardFooter>
               </Card>
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle>Products</CardTitle>
-                  <CardDescription>Add, edit, and view your products.</CardDescription>
+                  <CardDescription>Update, Delete and view your products.</CardDescription>
                 </CardHeader>
                 <CardFooter>
-                  <Button>Manage Products</Button>
+                  <Button onClick={()=> router.push('/sellerdashboard/viewproduct')}>Manage Products</Button>
                 </CardFooter>
               </Card>
               <Card>
