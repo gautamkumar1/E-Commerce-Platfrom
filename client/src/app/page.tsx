@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import Img from "../../public/placeholder-image.jpg";
 import Card from "@/partial/Card";
+import { GridBackgroundDemo } from "@/components/ui/GridBackgroundDemo";
+import { HeroScrollDemo } from "@/components/ui/HeroScrollDemo";
 export default function Component() {
   const products = [
     {
@@ -53,44 +55,10 @@ export default function Component() {
   return (
     <div className="flex flex-col min-h-[100dvh]">
       <main className="flex-1">
-        <section className="w-full py-12   bg-gradient-to-r from-[#6c5ce7] to-[#a29bfe]">
-          <div className="container px-4 md:px-6 grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-            <div className="space-y-4">
-              <h1 className="text-4xl font-bold text-white sm:text-5xl md:text-6xl">
-                Discover and Sell Unique Products
-              </h1>
-              <p className="text-lg text-white/80 max-w-[600px]">
-                Join our vibrant marketplace and connect with a global community
-                of buyers and sellers. Showcase your unique products and grow
-                your business.
-              </p>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Link
-                  href="#"
-                  className="inline-flex h-10 items-center justify-center rounded-md bg-white px-8 text-sm font-medium text-[#6c5ce7] shadow transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                  prefetch={false}
-                >
-                  Become a Seller
-                </Link>
-                <Link
-                  href="#"
-                  className="inline-flex h-10 items-center justify-center rounded-md border border-white bg-transparent px-8 text-sm font-medium text-white shadow-sm transition-colors hover:bg-white hover:text-[#6c5ce7] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-                  prefetch={false}
-                >
-                  Explore Products
-                </Link>
-              </div>
-            </div>
-            <img
-              src={Img.src}
-              width="550"
-              height="550"
-              alt="Hero"
-              className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last lg:aspect-square"
-            />
-          </div>
-        </section>
 
+        
+        <GridBackgroundDemo/>
+        <HeroScrollDemo/>
         {/* key features */}
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
           <div className="container px-4 md:px-6">
