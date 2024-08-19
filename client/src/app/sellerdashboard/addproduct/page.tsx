@@ -141,6 +141,9 @@ const handleCategoryChange = (value:any) => {
                 <SelectItem value="home">Home</SelectItem>
                 <SelectItem value="beauty">Beauty</SelectItem>
                 <SelectItem value="sports">Sports</SelectItem>
+                <SelectItem value="accessories">Accessories</SelectItem>
+                <SelectItem value="bags">Bags</SelectItem>
+                <SelectItem value="Shoes">Shoes</SelectItem>
               </SelectContent>
             </Select>
           </div>
