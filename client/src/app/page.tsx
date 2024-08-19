@@ -4,6 +4,10 @@ import Img from "../../public/placeholder-image.jpg";
 import Card from "@/partial/Card";
 import { GridBackgroundDemo } from "@/components/ui/GridBackgroundDemo";
 import { HeroScrollDemo } from "@/components/ui/HeroScrollDemo";
+import { WordPullUpDemo } from "@/components/ui/World-PullUp";
+import { InfiniteMovingCardsDemo } from "@/components/ui/Infinite-Moving";
+import Faq from "@/components/ui/Faq";
+import AboutTheDeveloper from "@/components/ui/AboutTheDeveloper";
 export default function Component() {
   const products = [
     {
@@ -60,7 +64,7 @@ export default function Component() {
         <GridBackgroundDemo/>
         <HeroScrollDemo/>
         {/* key features */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-black">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -136,7 +140,9 @@ export default function Component() {
           </div>
         </section>
         {/* trending products */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
+
+        {/* <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
+
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
@@ -169,80 +175,98 @@ export default function Component() {
               ))}
             </div>
           </div>
+        </section> */}
+        
+
+        {/* Seller Section */}
+        <section className="bg-black py-12 md:py-24">
+  <div className="container flex flex-col items-center justify-center gap-6 px-4 md:px-6 text-center">
+    <div>
+      <WordPullUpDemo />
+      <p className="mt-4 max-w-md text-muted-foreground md:text-xl mx-auto">
+        Join our platform and start selling your products to a wide audience.
+      </p>
+    </div>
+    <Link
+      href="/seller"
+      className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-1"
+      prefetch={false}
+    >
+      Register as a Seller
+    </Link>
+  </div>
+</section>
+
+{/* Top Seller */}
+<section className="w-full py-12 md:py-24 lg:py-32 bg-black">
+  <div className="container px-4 md:px-6">
+    <div className="flex flex-col items-center justify-center space-y-4 text-center">
+      <div className="space-y-2">
+        <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-primary-foreground">
+          Top Sellers
+        </div>
+        <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">
+          Meet Our Top Sellers
+        </h2>
+        <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-gray-300">
+          Discover the talented individuals behind our top-selling products.
+        </p>
+      </div>
+    </div>
+    <div className="mx-auto grid max-w-5xl items-start gap-6 py-12 lg:grid-cols-3 lg:gap-12">
+      <div className="flex flex-col items-center gap-4">
+        <Avatar>
+          <AvatarImage src="/placeholder-user.jpg" />
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
+        <div className="space-y-1 text-center">
+          <h3 className="text-lg font-bold text-white">John Doe</h3>
+          <p className="text-gray-300">Jewelry Maker</p>
+        </div>
+      </div>
+      <div className="flex flex-col items-center gap-4">
+        <Avatar>
+          <AvatarImage src="/placeholder-user.jpg" />
+          <AvatarFallback>SA</AvatarFallback>
+        </Avatar>
+        <div className="space-y-1 text-center">
+          <h3 className="text-lg font-bold text-white">Sarah Anderson</h3>
+          <p className="text-gray-300">Ceramist</p>
+        </div>
+      </div>
+      <div className="flex flex-col items-center gap-4">
+        <Avatar>
+          <AvatarImage src="/placeholder-user.jpg" />
+          <AvatarFallback>MR</AvatarFallback>
+        </Avatar>
+        <div className="space-y-1 text-center">
+          <h3 className="text-lg font-bold text-white">Michael Roth</h3>
+          <p className="text-gray-300">Woodworker</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+        {/* testimonials */}
+        <section>
+        <InfiniteMovingCardsDemo/>
         </section>
-        {/* join seller */}
-        <section className="bg-muted py-12 md:py-24">
-          <div className="container flex flex-col items-center gap-6 px-4 md:px-6">
-            <div className="text-center">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Sell with Acme
-              </h2>
-              <p className="mt-4 max-w-md text-muted-foreground md:text-xl">
-                Join our platform and start selling your products to a wide
-                audience.
-              </p>
-            </div>
-            <Link
-              href="#"
-              className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-1"
-              prefetch={false}
-            >
-              Register as a Seller
-            </Link>
-          </div>
+
+        {/* FAQ */}
+
+        <section>
+          <Faq/>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-primary-foreground">
-                  Top Sellers
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Meet Our Top Sellers
-                </h2>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Discover the talented individuals behind our top-selling
-                  products.
-                </p>
-              </div>
-            </div>
-            <div className="mx-auto grid max-w-5xl items-start gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-              <div className="flex flex-col items-center gap-4">
-                <Avatar>
-                  <AvatarImage src="/placeholder-user.jpg" />
-                  <AvatarFallback>JD</AvatarFallback>
-                </Avatar>
-                <div className="space-y-1 text-center">
-                  <h3 className="text-lg font-bold">John Doe</h3>
-                  <p className="text-muted-foreground">Jewelry Maker</p>
-                </div>
-              </div>
-              <div className="flex flex-col items-center gap-4">
-                <Avatar>
-                  <AvatarImage src="/placeholder-user.jpg" />
-                  <AvatarFallback>SA</AvatarFallback>
-                </Avatar>
-                <div className="space-y-1 text-center">
-                  <h3 className="text-lg font-bold">Sarah Anderson</h3>
-                  <p className="text-muted-foreground">Ceramist</p>
-                </div>
-              </div>
-              <div className="flex flex-col items-center gap-4">
-                <Avatar>
-                  <AvatarImage src="/placeholder-user.jpg" />
-                  <AvatarFallback>MR</AvatarFallback>
-                </Avatar>
-                <div className="space-y-1 text-center">
-                  <h3 className="text-lg font-bold">Michael Roth</h3>
-                  <p className="text-muted-foreground">Woodworker</p>
-                </div>
-              </div>
-            </div>
-          </div>
+
+        {/* About the Developer */}
+
+        <section>
+          <AboutTheDeveloper/>
         </section>
       </main>
-      <footer className="bg-muted p-6 md:py-12 w-full">
+      <footer className="bg-black p-6 md:py-12 w-full">
         <div className="container max-w-7xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 text-sm">
           <div className="grid gap-1">
             <h3 className="font-semibold">Marketplace</h3>

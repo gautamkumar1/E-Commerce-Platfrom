@@ -1,6 +1,8 @@
 import React from "react";
 import { Cover } from "./cover";
 import { AnimatedTooltipPreview } from "./AnimatedTooltipComponent";
+import ShimmerButton from "./Shimmer";
+import Link from "next/link";
 
 export function GridBackgroundDemo() {
   return (
@@ -26,12 +28,14 @@ export function GridBackgroundDemo() {
           Join our vibrant marketplace and connect with a global community of buyers and sellers. <br />Showcase your unique products and grow your business.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-            Become a Seller
-          </button>
-          <button className="px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700">
-            Explore Products
-          </button>
+        <Link href='/seller' prefetch={false}>
+        <ShimmerButton className="shadow-2xl">
+        <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
+          Become a Seller
+        </span>
+      </ShimmerButton>
+        </Link>
+          
         </div>
       </div>
     </div>
