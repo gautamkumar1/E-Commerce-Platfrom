@@ -206,6 +206,7 @@ export default function Component() {
             <CardTitle>Reviews</CardTitle>
           </CardHeader>
           <CardContent>
+            
             <div className="grid gap-6">
               {reviews.map((review, index) => (
                 <div key={index} className="grid gap-2">
