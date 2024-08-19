@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import ImageSlider from "@/components/ui/ImageSlider";
+import { useRouter } from "next/navigation";
 
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-
+  const router = useRouter();
   useEffect(() => {
     // Fetch products from the API
     const fetchProducts = async () => {
@@ -28,6 +29,12 @@ export default function ProductsPage() {
     ? products.filter((product) => product.category.toLowerCase() === selectedCategory.toLowerCase())
     : products;
 
+    const handleViewProduct = (productId:any) => {
+      console.log(productId);
+      
+      router.push(`/singleproduct/${productId}`);
+
+    };
   return (
     <div className="p-6">
       {/* Image Slider Section */}
@@ -91,11 +98,9 @@ export default function ProductsPage() {
                   </span>
                   <div className="flex gap-2">
                     <Button size="sm">Add to Cart</Button>
-                    <Link href="#" prefetch={false}>
-                      <Button size="sm" variant="outline">
+                    <Button size="sm" variant="outline"  onClick={() => handleViewProduct(product._id)}>
                         View Product
                       </Button>
-                    </Link>
                   </div>
                 </div>
               </div>

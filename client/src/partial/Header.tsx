@@ -65,7 +65,7 @@ export default function Header() {
               Home
             </Link>
             <Link
-              href="#"
+              href="/products"
               className="flex w-full items-center py-2 text-lg font-semibold"
               prefetch={false}
             >
@@ -116,7 +116,7 @@ export default function Header() {
           </li>
           <li>
             <Link
-              href="#"
+              href="/products"
               className="inline-flex h-9 items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
               prefetch={false}
             >
@@ -152,6 +152,7 @@ export default function Header() {
           </li>
         </ul>
       </nav>
+      {/* search Input */}
       <div className="ml-auto flex items-center gap-2">
         <div className="relative flex-1 md:grow-0">
           <div className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
